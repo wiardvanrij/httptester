@@ -2,11 +2,14 @@
 
 Either build it yourself or use the docker image: https://hub.docker.com/repository/docker/wiardvanrij/httptester
 
+![alt text](https://raw.githubusercontent.com/wiardvanrij/httptester/main/example.png)
+
 # Usage
 
-`main.go -seconds=1 http://your-endpoint.whatever https://a-second.one`
+`main.go -seconds=1 -ignore-ssl=false http://your-endpoint.whatever https://a-second.one`
 
-The flag `seconds` is optional and defaults to `1`. 
+The flag `seconds` is optional and defaults to `1`. This is the timer per request
+The flag `ignore-ssl` is optional and defaults to false. This can be enabled to ignore SSL certs
 
 # metrics
 

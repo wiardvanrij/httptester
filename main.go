@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
 	"io"
 	"io/ioutil"
@@ -28,7 +29,12 @@ var (
 func main() {
 
 	seconds := flag.Int("seconds", 1, "seconds between each request")
+	ignoreCert := flag.Bool("ignore-ssl", false, "ignore ssl")
 	flag.Parse()
+
+	if *ignoreCert {
+		http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+	}
 
 	prometheus.MustRegister(requestDuration)
 	urls := flag.Args()
