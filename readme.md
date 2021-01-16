@@ -4,7 +4,9 @@ Either build it yourself or use the docker image: https://hub.docker.com/reposit
 
 # Usage
 
-`main.go http://your-endpoint.whatever https://a-second.one`
+`main.go -seconds=1 http://your-endpoint.whatever https://a-second.one`
+
+The flag `seconds` is optional and defaults to `1`. 
 
 # metrics
 

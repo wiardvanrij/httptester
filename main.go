@@ -27,6 +27,7 @@ var (
 
 func main() {
 
+	seconds := flag.Int("seconds", 1, "seconds between each request")
 	flag.Parse()
 
 	prometheus.MustRegister(requestDuration)
@@ -35,7 +36,7 @@ func main() {
 	done := make(chan bool)
 	ts := make([]*time.Ticker, len(urls))
 	for i, url := range urls {
-		ts[i] = schedule(url, 1*time.Second, done)
+		ts[i] = schedule(url, time.Duration(*seconds)*time.Second, done)
 	}
 
 	http.Handle("/metrics", promhttp.Handler())
